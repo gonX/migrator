@@ -41,6 +41,9 @@ The following environment variables can be set:
   * `USE_INSECURE_CURL`
     * `true` - Allows curl to perform insecure SSL connections for querying APIs
     * `false` - (_Default_) Require curl to perform secure SSL connections for querying APIs
+  * `NO_IMAGE_CLEAN`
+    * `true` - Don't clean images when image push is finished (e.g. when running multiple migrators that have mutual images)
+    * `false` - (_Default_) Clean images where possible after finishing all image pushes
   * `DOCKER_HUB_ORG` - Docker Hub organization name to migrate images from
     * Defaults to the username used to login to Docker Hub if not provided
   * `V1_REPO_FILTER` - Search filter to limit the scope of the repositories to migrate (uses [grep basic regular expression interpretation](http://www.gnu.org/software/grep/manual/html_node/Basic-vs-Extended.html))

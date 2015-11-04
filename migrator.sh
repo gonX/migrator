@@ -35,6 +35,9 @@ initialize_migrator() {
 
   # set default to require curl to perform ssl certificate validation
   USE_INSECURE_CURL=${USE_INSECURE_CURL:-false}
+
+  # set default to not skip image clean after a successful migration 
+  NO_IMAGE_CLEAN=${NO_IMAGE_CLEAN:-false}
 }
 
 # verify requirements met for script to execute properly
@@ -489,7 +492,9 @@ main() {
     docker_login ${V2_REGISTRY} ${V2_USERNAME} ${V2_PASSWORD} ${V2_EMAIL}
   fi
   push_images_to_v2
-  cleanup_local_engine
+  if [ "${NO_IMAGE_CLEAN}" != "true" ]; then
+      cleanup_local_engine
+  fi
   migration_complete
 }
 
